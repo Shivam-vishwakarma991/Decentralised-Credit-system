@@ -13,35 +13,6 @@ function App() {
   const [account, setaccount] = useState("NULL");
   const [creditBalance, setcreditBalance] = useState("nil");
   
-  
-
-  // useEffect(() => {
-  //   const initiate = async () => {
-  //     const provider = new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545");
-  //     const web3 = new Web3(provider);
-  //     const networkId = await web3.eth.net.getId();
-  //     const deployedNetwork = Credit.networks[networkId];
-  //     const contract = new web3.eth.Contract(
-  //       Credit.abi,
-  //       deployedNetwork.address
-  //     );
-  //     console.log(contract);
-  //     setstate({ web3: web3, contract: contract });
-  //   };
-  //   initiate();
-  // }, []);
-
- 
-  
-  const CreditAmnt= async ()=>{
-    const {contract } = state;
-    await contract.methods.initializeAccount().send({ from: account, gas: 480000 });
-  }
-
-  
-
-
-
   useEffect(() => {
     const initiate = async () => {
       const provider = await detectEthereumProvider();
@@ -60,7 +31,6 @@ function App() {
         try{
 
           await provider.request({ method: "eth_requestAccounts" });
-          // window.location.reload();
           setstate({ web3: web3, contract: contract });
           
         } catch(error){
